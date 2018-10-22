@@ -22,4 +22,4 @@ const configureStore = () => {
     return { store, persistor }
 }
 
-export default configureStore
+export default configureStore;
