@@ -24,6 +24,12 @@
 ### 설치
 
 npm install redux-persist redux-thunk redux --save
+npm install react-redux
+npm install react-navigation
+
+### react navigation 
+- https://reactnavigation.org/
+- https://reactnavigation.org/docs/en/getting-started.html
 
 
 
