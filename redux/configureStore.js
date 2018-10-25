@@ -1,4 +1,4 @@
-import { combineReducers, applyMiddleware, createStore } from "redux"
+import {  applyMiddleware, createStore } from "redux"
 import { persistCombineReducers, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";

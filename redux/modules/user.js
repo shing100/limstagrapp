@@ -27,4 +27,4 @@ const reducer = (state = initalState, action) => {
 
 // reducer export
 
-export default reducere;
+export default reducer;
