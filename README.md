@@ -30,6 +30,7 @@ npm install react-navigation
 ### react navigation 
 - https://reactnavigation.org/
 - https://reactnavigation.org/docs/en/getting-started.html
+- https://reactnavigation.org/docs/en/stack-navigator.html
 
 
 
