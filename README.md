@@ -33,4 +33,6 @@ npm install react-navigation
 - https://reactnavigation.org/docs/en/stack-navigator.html
 
 
-
+### ngrok
+- https://dashboard.ngrok.com/get-started
+- ./ngrok http 8000
