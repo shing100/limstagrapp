@@ -1,9 +1,34 @@
 // imports
 import { API_URL } from "../../constants";
+import { AsyncStorage } from "react-native";
 
 // actions
 
+const SAVE_TOKEN = "SAVE_TOKEN";
+const SET_USER = "SET_USER";
+const LOGOUT = "LOGOUT";
+
 // action creators
+const saveToken = (token) => {
+    return {
+        type: SAVE_TOKEN,
+        token
+    }
+}
+
+const setLogout = () => {
+    return {
+        type: LOGOUT
+    }
+}
+
+const setUser = (user) => {
+    return {
+        type: SET_USER,
+        user
+    }
+}
+
 
 // API actions
 const usernameLogin = (username, password) => {
@@ -19,7 +44,14 @@ const usernameLogin = (username, password) => {
             })
         })
         .then(response => response.json())
-        .then(json => console.log(json))
+        .then(json => {
+            if( json.token ) {
+                dispatch(saveToken(json.token));
+            }
+            if( json.user ) {
+                dispatch(setUser(json.user))
+            }
+        })
     }
 }
 
@@ -32,11 +64,42 @@ const initalState = {
 
 const reducer = (state = initalState, action) => {
     switch (action.type) {
+        case SAVE_TOKEN:
+            return applySetToken(state, action);
+        case LOGOUT:
+            return applyLogout(state, action);
+        case SET_USER:
+            return applySetUser(state, action);
         default:
             return state;
     }
 }
 // reducer functions
+
+const applySetToken = (state, action) => {
+    const { token } = action;
+    localStorage.setItem("jwt", token);
+    return {
+        ...state,
+        isLoggedIn: true,
+        token
+    }
+}
+
+const applyLogout = (state, action) => {
+    AsyncStorage.clear();
+    return {
+        isLoggedIn: false
+    }
+}
+const applySetUser = (state, action) => {
+    const { user } = action;
+    return {
+        ...state,
+        profile: user
+    }
+}
+
 
 // exports
 
