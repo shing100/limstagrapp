@@ -24,7 +24,7 @@ class Container extends Component {
         _changePassword = text => {
             this.setState({ password: text });
         };
-        _submit = () => {
+        _submit = async () => {
             const { username, password, isSubmitting } = this.state;
             const { usernameLogin } = this.props;
             if (!isSubmitting) {
@@ -32,7 +32,13 @@ class Container extends Component {
                 this.setState({
                 isSubmitting: true
                 });
-                usernameLogin(username, password);
+                const loginResult = await usernameLogin(username, password);
+                if(!loginResult){
+                    Alert.alert("로그인 실패");
+                    this.setState({
+                        isSubmitting: false;
+                    })
+                }
                 // redux action
             } else {
                 Alert.alert("All fields are required");

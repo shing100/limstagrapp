@@ -33,7 +33,7 @@ const setUser = (user) => {
 // API actions
 const usernameLogin = (username, password) => {
     return (dispatch) => {
-        fetch(`${API_URL}/rest-auth/login/`, {
+        return fetch(`${API_URL}/rest-auth/login/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -45,11 +45,12 @@ const usernameLogin = (username, password) => {
         })
         .then(response => response.json())
         .then(json => {
-            if( json.token ) {
+            if (json.token && json.user) {
                 dispatch(saveToken(json.token));
-            }
-            if( json.user ) {
-                dispatch(setUser(json.user))
+                dispatch(setUser(json.user));
+                return true;
+            } else {
+                return false;
             }
         })
     }

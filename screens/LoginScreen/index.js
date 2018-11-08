@@ -5,7 +5,7 @@ import Container from "./container";
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         usernameLogin: (username, password) => {
-            dispatch(userActions.usernameLogin(username, password));
+            return dispatch(userActions.usernameLogin(username, password));
         }
     }
 }
