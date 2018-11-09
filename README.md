@@ -36,3 +36,7 @@ npm install react-navigation
 ### ngrok
 - https://dashboard.ngrok.com/get-started
 - ./ngrok http 8000
+
+
+### faceboook
+- https://docs.expo.io/versions/v31.0.0/sdk/facebook

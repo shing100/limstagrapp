@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Alert } from "react-native";
+import PorpTypes from "prop-types";
 import LogInScreen from "./presenter";
 
 class Container extends Component {
@@ -8,6 +9,10 @@ class Container extends Component {
         password: "",
         isSubmitting: false
     };
+    static porpTypes = {
+        usernameLogin: PorpTypes.func.isRequired,
+        facebookLogin: PorpTypes.func.isRequired
+    }
     render() {
         return (
             <LogInScreen
@@ -15,6 +20,7 @@ class Container extends Component {
                 changeUsername={this._changeUsername}
                 changePassword={this._changePassword}
                 submit={this._submit}
+                facebookLogin={this._hanldeFBLogin}
             />
             );
         }
@@ -36,7 +42,7 @@ class Container extends Component {
                 if(!loginResult){
                     Alert.alert("로그인 실패");
                     this.setState({
-                        isSubmitting: false;
+                        isSubmitting: false
                     })
                 }
                 // redux action
@@ -45,6 +51,16 @@ class Container extends Component {
             }
         }
     };
+    _hanldeFBLogin = async () => {
+        const { facebookLogin } = this.props;
+        this.setState({
+            isSubmitting: true
+        })
+        const facebookLoginResult = await facebookLogin();
+        if(!facebookLoginResult){
+            this.setState({ isSubmitting: false})
+        }
+    }
 }
 
 export default Container;

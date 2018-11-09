@@ -6,8 +6,9 @@ import { Provider } from "react-redux";
 // 디스크에서 스토어를 가져오기까지 기다려주는 역활
 import { PersistGate } from "redux-persist/es/integration/react";
 import configureStore from "./redux/configureStore";
-const { persistor, store } = configureStore();
 import AppContainer from "./components/AppContainer";
+const { persistor, store } = configureStore();
+
 
 class App extends React.Component {
   state = {

@@ -1,12 +1,13 @@
 // imports
-import { API_URL } from "../../constants";
+import { API_URL, FB_APP_ID} from "../../constants";
 import { AsyncStorage } from "react-native";
+import { Facebook } from "expo";
 
 // actions
 
 const SAVE_TOKEN = "SAVE_TOKEN";
 const SET_USER = "SET_USER";
-const LOGOUT = "LOGOUT";
+const LOG_OUT = "LOG_OUT";
 
 // action creators
 const saveToken = (token) => {
@@ -56,6 +57,37 @@ const usernameLogin = (username, password) => {
     }
 }
 
+const facebookLogin = () => {
+    return async dispatch => {
+        const { type, token } = await Facebook.logInWithReadPermissionsAsync(FB_APP_ID,{
+            permissions: ["public_profile", "email"]
+        })
+        if (type === "success"){
+            return fetch(`${API_URL}/users/login/facebook/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    access_token: token
+                })
+            })
+            .then(response => response.json())
+            .then(json => {
+                if (json.token && json.user) {
+                    dispatch(saveToken(json.token));
+                    dispatch(setUser(json.user));
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+        }else {
+            return false;
+        }
+    }
+}
+
 // intiial state
 const initalState = {
     isLoggedIn: false
@@ -67,7 +99,7 @@ const reducer = (state = initalState, action) => {
     switch (action.type) {
         case SAVE_TOKEN:
             return applySetToken(state, action);
-        case LOGOUT:
+        case LOG_OUT:
             return applyLogout(state, action);
         case SET_USER:
             return applySetUser(state, action);
@@ -79,7 +111,6 @@ const reducer = (state = initalState, action) => {
 
 const applySetToken = (state, action) => {
     const { token } = action;
-    localStorage.setItem("jwt", token);
     return {
         ...state,
         isLoggedIn: true,
@@ -105,7 +136,8 @@ const applySetUser = (state, action) => {
 // exports
 
 const actionCreators = {
-    usernameLogin
+    usernameLogin,
+    facebookLogin
 }
 
 export { actionCreators };

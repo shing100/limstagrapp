@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { View, Text, StatusBar, StyleSheet } from "react-native";
 import LoggedOutNavigation from "../../navigation/LoggedOutNavigation";
 
+
+
 class AppContainer extends Component {
     static propTypes = {
         isLoggedIn: PropTypes.bool.isRequired
