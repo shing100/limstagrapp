@@ -1,11 +1,11 @@
 import { createStackNavigator } from "react-navigation";
-import SearchScreen from "../screens/SearchScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import sharedRoutes, {sharedOptions} from "./sharedRoutes";
 
-const SearchRoute = createStackNavigator(
+const ProfileRoute = createStackNavigator(
     {
-        Search: {
-            screen: SearchScreen
+        Profile: {
+            screen: ProfileScreen
         },
         ...sharedRoutes
     },
@@ -14,4 +14,4 @@ const SearchRoute = createStackNavigator(
     }
 )
 
-export default SearchRoute;
+export default ProfileRoute;
