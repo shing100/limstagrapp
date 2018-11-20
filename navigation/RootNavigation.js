@@ -1,7 +1,7 @@
-import { StackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 import TakePhotoScreen from "../screens/TakePhotoScreen";
 
-const RootNavigation = StackNavigator(
+const RootNavigation = createStackNavigator(
     {
         TakePhoto: {
             screen: TakePhotoScreen,
