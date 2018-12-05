@@ -137,7 +137,8 @@ const applySetUser = (state, action) => {
 
 const actionCreators = {
     usernameLogin,
-    facebookLogin
+    facebookLogin,
+    setLogout
 }
 
 export { actionCreators };
