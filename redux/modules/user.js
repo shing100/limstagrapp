@@ -8,6 +8,7 @@ import { Facebook } from "expo";
 const SAVE_TOKEN = "SAVE_TOKEN";
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
+const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
 
 // action creators
 const saveToken = (token) => {
@@ -27,6 +28,13 @@ const setUser = (user) => {
     return {
         type: SET_USER,
         user
+    }
+}
+
+const setNotifications = (notifications) => {
+    return {
+        type: SET_NOTIFICATIONS,
+        notifications
     }
 }
 
@@ -88,6 +96,25 @@ const facebookLogin = () => {
     }
 }
 
+const getNotifications = () => {
+    return (dispatch, getState) => {
+        const { user: { token } } = getState();
+    fetch(`${API_URL}/notifications/`, {
+        headers: {
+            Authorization: `JWT ${token}`
+        }
+    })
+    .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logOut());
+        } else {
+          return response.json();
+        }
+    })
+    .then(json => dispatch(setNotifications(json)));
+    };
+}
+
 // intiial state
 const initalState = {
     isLoggedIn: false
@@ -103,6 +130,8 @@ const reducer = (state = initalState, action) => {
             return applyLogout(state, action);
         case SET_USER:
             return applySetUser(state, action);
+        case SET_NOTIFICATIONS:
+            return applySetNotifications(state, action);
         default:
             return state;
     }
@@ -124,11 +153,20 @@ const applyLogout = (state, action) => {
         isLoggedIn: false
     }
 }
+
 const applySetUser = (state, action) => {
     const { user } = action;
     return {
         ...state,
         profile: user
+    }
+}
+
+const applySetNotifications = (state, action) => {
+    const { notifications } = action;
+    return {
+        ...state,
+        notifications
     }
 }
 
@@ -138,7 +176,8 @@ const applySetUser = (state, action) => {
 const actionCreators = {
     usernameLogin,
     facebookLogin,
-    setLogout
+    setLogout,
+    getNotifications
 }
 
 export { actionCreators };

@@ -9,14 +9,14 @@ const SET_SEARCH = "SET_SEARCH";
 
 // Action Creators
 
-function setFeed(feed) {
+const setFeed = (feed) => {
   return {
     type: SET_FEED,
     feed
   };
 }
 
-function setSearch(search) {
+const setSearch = (search) => {
     return {
         type: SET_SEARCH,
         search
@@ -25,12 +25,12 @@ function setSearch(search) {
 
 // API Actions
 
-function getFeed() {
+const getFeed = () => {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
     fetch(`${API_URL}/images/`, {
         headers: {
-            Authorizations: `JWT ${token}`
+            Authorization: `JWT ${token}`
         }
     })
     .then(response => {
@@ -44,12 +44,12 @@ function getFeed() {
   };
 }
  
-function getSearch() {
+const getSearch = () => {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
     fetch(`${API_URL}/images/search/`, {
         headers: {
-            Authorizations: `JWT ${token}`
+            Authorization: `JWT ${token}`
         }
     })
     .then(response => {
@@ -60,7 +60,7 @@ function getSearch() {
         }
     })
     .then(json => dispatch(setSearch(json)));
-  };
+    };
 }
 // Initial State
  
@@ -68,7 +68,7 @@ const initialState = {};
  
 // Reducer
  
-function reducer(state = initialState, action) {
+const reducer = (state = initialState, action) =>{
     switch (action.type) {
         case SET_FEED:
             return applySetFeed(state, action);
@@ -80,7 +80,7 @@ function reducer(state = initialState, action) {
 }
  
 // Reducer Actions
-function applySetFeed(state, action) {
+const applySetFeed = (state, action) => {
     const { feed } = action;
     return {
         ...state,
@@ -88,7 +88,7 @@ function applySetFeed(state, action) {
     };
 }
 
-function applySetSearch(state, action) {
+const applySetSearch = (state, action) => {
     const { search } = action;
     return {
         ...state,
