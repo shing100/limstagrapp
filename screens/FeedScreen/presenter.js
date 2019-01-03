@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, ScrollView, RefreshControl, StyleSheet } from "react-native";
+import Photo from "../../components/Photo";
 
 const FeedScreen = props => (
     <ScrollView refreshControl={
@@ -11,7 +12,11 @@ const FeedScreen = props => (
         />
     }
     contentContainerStyle={styles.containor}
-    />
+    >
+    <View style={styles.containor}>
+        {props.feed && props.feed.map(photo => <Photo {...photo} key={photo.id} />)}
+    </View>
+    </ScrollView>
 );
 
 const styles = StyleSheet.create({
@@ -22,7 +27,9 @@ const styles = StyleSheet.create({
 })
 
 FeedScreen.propTypes = {
-    isFetching: PropTypes.bool.isRequired
+    isFetching: PropTypes.bool.isRequired,
+    refresh: PropTypes.func.isRequired,
+    feed: PropTypes.array.isRequired
 }
 
 export default FeedScreen;
