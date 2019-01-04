@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Text } from "react-native";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import FadeIn from "react-native-fade-in-image";
 
@@ -15,7 +14,7 @@ const Photo = props => (
                 ? {
                     uri: props.creator.profile_image
                   }
-                : require("../../assets/images/noPhoto.jpg")
+                : require("../../assets/images/noPhoto.png")
             }
           />
         </FadeIn>
@@ -73,7 +72,8 @@ Photo.propTypes = {
         })
     ).isRequired,
     natural_time: PropTypes.string.isRequired,
-    is_liked: PropTypes.bool.isRequired
+    is_liked: PropTypes.bool.isRequired,
+    is_vertical: PropTypes.bool.isRequired
 };
 
-export default photo;
+export default Photo;
