@@ -23,9 +23,11 @@
 
 ### 설치
 
-npm install redux-persist redux-thunk redux --save
-npm install react-redux
-npm install react-navigation
+- npm install redux-persist redux-thunk redux --save
+- npm install react-redux
+- npm install react-navigation
+- npm install react-native-fade-in-image
+
 
 ### react navigation 
 - https://reactnavigation.org/
