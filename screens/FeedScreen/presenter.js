@@ -10,8 +10,7 @@ const FeedScreen = props => (
             onRefresh={props.refresh}
             tintColor={"black"}
         />
-    }
-    contentContainerStyle={styles.containor}
+    }s
     >
     <View style={styles.containor}>
         {props.feed && props.feed.map(photo => <Photo {...photo} key={photo.id} />)}

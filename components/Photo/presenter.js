@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Text, TouchableOpacity, Image, Dimensions, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+  StyleSheet
+} from "react-native";
 import FadeIn from "react-native-fade-in-image";
 
 const { width, height } = Dimensions.get("window");
@@ -13,13 +20,15 @@ const Photo = props => (
           <Image
             source={
               props.creator.profile_image
-                ? {uri: props.creator.profile_image}
+                ? {
+                    uri: props.creator.profile_image
+                  }
                 : require("../../assets/images/noPhoto.png")
             }
             style={styles.avatar}
           />
         </FadeIn>
-      <View>
+        <View>
           <Text style={styles.author}>{props.creator.username}</Text>
           {props.location && (
             <Text style={styles.location}>{props.location}</Text>
@@ -33,15 +42,14 @@ const Photo = props => (
         style={{ width, height: props.is_vertical ? 600 : 300 }}
       />
     </FadeIn>
-    <View>
-      <View style={styles.photoMeta}>
-        <View style={styles.comment}>
-          <Text style={styles.commentAuthor}>
-            {props.creator.username}{" "}
-            <Text style={styles.message}>{props.caption}</Text>
-          </Text>
-        </View>
-        {props.comments.length > 0 && (
+    <View style={styles.photoMeta}>
+      <View style={styles.comment}>
+        <Text style={styles.commentAuthor}>
+          {props.creator.username}{" "}
+          <Text style={styles.message}>{props.caption}</Text>
+        </Text>
+      </View>
+      {props.comments.length > 0 && (
         <TouchableOpacity>
           <View style={styles.commentsLink}>
             {props.comments.length === 1 ? (
@@ -55,11 +63,9 @@ const Photo = props => (
         </TouchableOpacity>
       )}
       <Text style={styles.dateText}>{props.natural_time.toUpperCase()}</Text>
-      </View>
     </View>
   </View>
 );
-
 
 const styles = StyleSheet.create({
   photo: {
@@ -118,30 +124,29 @@ const styles = StyleSheet.create({
   }
 });
 
-
 Photo.propTypes = {
-    id: PropTypes.number.isRequired,
-    creator: PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  creator: PropTypes.shape({
+    profile_image: PropTypes.string,
+    username: PropTypes.string.isRequired
+  }).isRequired,
+  location: PropTypes.string.isRequired,
+  file: PropTypes.string.isRequired,
+  like_count: PropTypes.number.isRequired,
+  caption: PropTypes.string.isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      message: PropTypes.string.isRequired,
+      creator: PropTypes.shape({
         profile_image: PropTypes.string,
         username: PropTypes.string.isRequired
-    }).isRequired,
-    location: PropTypes.string.isRequired,
-    file: PropTypes.string.isRequired,
-    like_count: PropTypes.number.isRequired,
-    caption: PropTypes.string.isRequired,
-    comments: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            message: PropTypes.string.isRequired,
-            creator: PropTypes.shape({
-                profile_image: PropTypes.string,
-                username: PropTypes.string.isRequired
-            }).isRequired
-        })
-    ).isRequired,
-    natural_time: PropTypes.string.isRequired,
-    is_liked: PropTypes.bool.isRequired,
-    is_vertical: PropTypes.bool.isRequired
+      }).isRequired
+    })
+  ).isRequired,
+  natural_time: PropTypes.string.isRequired,
+  is_liked: PropTypes.bool.isRequired,
+  is_vertical: PropTypes.bool.isRequired
 };
 
 export default Photo;
