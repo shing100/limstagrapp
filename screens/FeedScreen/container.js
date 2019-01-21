@@ -13,6 +13,7 @@ class Container extends Component {
 
     componentWillReceiveProps = (nextProps) => {
         if(nextProps.feed){
+            console.log(nextProps);
             this.setState({
                 isFetching: false
             })
