@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import PropTypes from "prop-types"
 import { Ionicons } from "@expo/vector-icons";
-import { withNavigation } from "react-navigation"
+import PropTypes from "prop-types";
+import { withNavigation } from "react-navigation";
 
 const PhotoActions = props => (
   <View style={styles.container}>
     <View style={styles.actions}>
-      <TouchableOpacity>
+      <TouchableOpacity onPressOut={props.handlePress}>
         <View style={styles.action}>
           <Ionicons
             name={props.isLiked ? "ios-heart" : "ios-heart-outline"}
@@ -27,7 +27,7 @@ const PhotoActions = props => (
     <TouchableOpacity onPressOut={() => props.navigation.navigate("Likes")}>
       <View>
         <Text style={styles.likes}>
-          {props.likeCount}{props.likeCount ? "개 좋아요" : "좋아요를 눌러요"}
+          {props.likeCount}{props.likeCount === 0 ? "좋아요를 눌러주세요" : "개 좋아요"}
         </Text>
       </View>
     </TouchableOpacity>
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
 
 PhotoActions.propTypes = {
   isLiked: PropTypes.bool.isRequired,
-  likeCount: PropTypes.number.isRequired
+  likeCount: PropTypes.number.isRequired,
+  handlePress: PropTypes.func.isRequired
 };
 
 export default withNavigation(PhotoActions);
