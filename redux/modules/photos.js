@@ -63,7 +63,27 @@ const getSearch = () => {
     };
 }
 
-function likePhoto(photoId) {
+const searchByHashtag = (hashtag) => {
+    return (dispatch, getState) => {
+        const { user: { token } } = getState();
+        fetch(`${API_URL}/images/search/?hashtags=${hashtag}`, {
+        headers: {
+            Authorization: `JWT ${token}`
+        }
+        })
+        .then(response => {
+            if (response.status === 401) {
+            dispatch(userActions.logOut());
+            } else {
+            return response.json();
+            }
+        })
+        .then(json => dispatch(setSearch(json)));
+    };
+}
+
+
+const likePhoto = (photoId) => {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
         return fetch(`${API_URL}/images/${photoId}/likes/`, {
@@ -83,7 +103,7 @@ function likePhoto(photoId) {
     };
 }
 
-function unlikePhoto(photoId) {
+const unlikePhoto = (photoId) => {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
         return fetch(`${API_URL}/images/${photoId}/unlikes/`, {
@@ -143,7 +163,8 @@ const actionCreators = {
     getFeed,
     getSearch,
     likePhoto,
-    unlikePhoto
+    unlikePhoto,
+    searchByHashtag
 };
 
 

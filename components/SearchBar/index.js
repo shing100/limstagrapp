@@ -20,7 +20,9 @@ class SearchBar extends Component {
                     returnKeyType={"search"}
                     onChangeText={this._changeText}
                     value={term}
-                    onEndEditing={this._handeSubmit} />
+                    onEndEditing={this._handeSubmit}
+                    autoCapitalize={"none"}
+                    autoCorrect={false} />
             </View>
         )
     }
