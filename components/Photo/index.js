@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Container from "./container";
+import PhotoContainer from "./presenter";
 import { actionCreators as photoActions } from "../../redux/modules/photos";
 
 const mapDispatchToProps = (dispatch, ownProps) => {

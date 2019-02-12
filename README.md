@@ -35,6 +35,10 @@
 - https://reactnavigation.org/docs/en/stack-navigator.html
 
 
+### react returnkeytype
+- https://facebook.github.io/react-native/docs/textinput#returnkeytype
+
+
 ### ngrok
 - https://dashboard.ngrok.com/get-started
 - ./ngrok http 8000

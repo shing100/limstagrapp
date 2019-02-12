@@ -25,7 +25,7 @@ class Container extends Component {
     componentDidMount() {
         const { navigation } = this.props;
         navigation.setParams({
-        submitSearch: this._submitSearch
+            submitSearch: this._submitSearch
         });
     }
 
@@ -42,9 +42,11 @@ class Container extends Component {
             <SearchScreen {...this.state} {...this.props} refresh={this._refresh} />
         );
     }
+
     _submitSearch = text => {
         const { searchingBy } = this.state;
         const { searchHashtag, getEmptySearch } = this.props;
+
         if (text === "") {
             getEmptySearch();
         } else {
@@ -55,6 +57,7 @@ class Container extends Component {
             isFetching: true
         });
     };
+    
     _refresh = () => {
         const { searchingBy } = this.state;
         const { getEmptySearch, searchHashtag } = this.props;
@@ -65,4 +68,5 @@ class Container extends Component {
         }
     };
 }
+
 export default Container;
