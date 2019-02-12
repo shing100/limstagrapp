@@ -15,11 +15,11 @@ const { width, height } = Dimensions.get("window");
 const SearchScreen = props => (
     <ScrollView
         refreshControl={
-        <RefreshControl
-            refreshing={props.isFetching}
-            onRefresh={props.refresh}
-            tintColor={"black"}
-        />
+            <RefreshControl
+                refreshing={props.isFetching}
+                onRefresh={props.refresh}
+                tintColor={"black"}
+            />
         }
     >
         <View style={styles.container}>

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -27,7 +28,7 @@ const PhotoActions = props => (
     <TouchableOpacity onPressOut={() => props.navigation.navigate("Likes")}>
       <View>
         <Text style={styles.likes}>
-          {props.likeCount}{props.likeCount === 0 ? "좋아요를 눌러주세요" : "개 좋아요"}
+          {props.likeCount === 0 ? "좋아요를 눌러주세요" : `${props.likeCount}개 좋아요`}
         </Text>
       </View>
     </TouchableOpacity>

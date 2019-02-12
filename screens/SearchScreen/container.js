@@ -16,7 +16,7 @@ class Container extends Component {
         searchHashtag: PropTypes.func.isRequired,
         search: PropTypes.array
     };
-    
+
     state = {
         searchingBy: "",
         isFetching: false
@@ -31,18 +31,18 @@ class Container extends Component {
 
     componentWillReceiveProps = nextProps => {
         if (nextProps.search) {
-        this.setState({
-            isFetching: false
-        });
+            this.setState({
+                isFetching: false
+            });
         }
     };
 
     render() {
         return (
-            <SearchScreen {...this.state} {...this.props} refresh={this._refresh} />
+        <SearchScreen {...this.state} {...this.props} refresh={this._refresh} />
         );
     }
-
+    
     _submitSearch = text => {
         const { searchingBy } = this.state;
         const { searchHashtag, getEmptySearch } = this.props;
@@ -57,7 +57,7 @@ class Container extends Component {
             isFetching: true
         });
     };
-    
+
     _refresh = () => {
         const { searchingBy } = this.state;
         const { getEmptySearch, searchHashtag } = this.props;
