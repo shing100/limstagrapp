@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { actionCreators as photoActions } from "../../redux/modules/photos";
-import Container from "./contanier";
+import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
     const { photos: { search } } = state;

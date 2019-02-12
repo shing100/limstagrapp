@@ -1,30 +1,29 @@
-import { React } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {
-    View,
-    Text,
-    ScrollView,
-    RefreshControl,
-    StyleSheet,
-    Dimensions
+  View,
+  Text,
+  ScrollView,
+  RefreshControl,
+  StyleSheet,
+  Dimensions
 } from "react-native";
-import Photo from "../../components/Photo";
 import SquarePhoto from "../../components/SquarePhoto";
 
 const { width, height } = Dimensions.get("window");
 
-
 const SearchScreen = props => (
     <ScrollView
-    refreshControl={
+        refreshControl={
         <RefreshControl
             refreshing={props.isFetching}
             onRefresh={props.refresh}
             tintColor={"black"}
         />
-    }>
-    <View style={styles.container}>
-      {props.search.length === 0 && props.searchingBy.length > 1 ? (
+        }
+    >
+        <View style={styles.container}>
+        {props.search.length === 0 && props.searchingBy.length > 1 ? (
             <Text style={styles.notFound}>
                 No images found for {props.searchingBy}
             </Text>
@@ -32,9 +31,9 @@ const SearchScreen = props => (
             props.search.map(photo => (
                 <SquarePhoto key={photo.id} imageURL={photo.file} />
             ))
-      )}
-    </View>
-  </ScrollView>
+        )}
+        </View>
+    </ScrollView>
 );
 
 const styles = StyleSheet.create({

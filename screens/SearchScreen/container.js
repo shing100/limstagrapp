@@ -4,11 +4,11 @@ import SearchScreen from "./presenter";
 import SearchBar from "../../components/SearchBar";
 
 class Container extends Component {
-    static navigationOptions = ({navigation}) => {
+    static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
         return {
             headerTitle: <SearchBar submit={text => params.submitSearch(text)} />
-        }
+        };
     };
 
     static propTypes = {
@@ -20,23 +20,22 @@ class Container extends Component {
     state = {
         searchingBy: "",
         isFetching: false
-    }
+    };
 
     componentDidMount() {
         const { navigation } = this.props;
         navigation.setParams({
             submitSearch: this._submitSearch
-        })
+        });
     }
 
     componentWillReceiveProps = nextProps => {
         if (nextProps.search) {
-            this.setState({
-                isFetching: false
-            });
+        this.setState({
+            isFetching: false
+        });
         }
     };
-
 
     render() {
         return (
@@ -47,6 +46,7 @@ class Container extends Component {
     _submitSearch = text => {
         const { searchingBy } = this.state;
         const { searchHashtag, getEmptySearch } = this.props;
+
         if (text === "") {
             getEmptySearch();
         } else {
@@ -55,8 +55,8 @@ class Container extends Component {
         this.setState({
             searchingBy: text,
             isFetching: true
-        })
-    }
+        });
+    };
 
     _refresh = () => {
         const { searchingBy } = this.state;
