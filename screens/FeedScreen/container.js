@@ -1,34 +1,40 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import FeedScreen from "./presenter";
+import NotificationsScreen from "./presenter";
 
 class Container extends Component {
     static propTypes = {
-        feed: PropTypes.array,
-        getFeed: PropTypes.func.isRequired
-    }
+        notifications: PropTypes.array,
+        getNotifications: PropTypes.func.isRequired
+    };
+    
     state = {
         isFetching: false
-    }
-
-    componentWillReceiveProps = (nextProps) => {
-        if(nextProps.feed){
-            console.log(nextProps);
+    };
+    componentWillReceiveProps = nextProps => {
+        if (nextProps.feed) {
             this.setState({
                 isFetching: false
-            })
+            });
         }
+    };
+
+    render() {
+        return (
+        <NotificationsScreen
+            {...this.props}
+            {...this.state}
+            refresh={this._refresh}
+        />
+        );
     }
     _refresh = () => {
-        const { getFeed } = this.props;
+        const { getNotifications } = this.props;
         this.setState({
             isFetching: true
-        })
-        getFeed();
-    }
-    render() {
-        return <FeedScreen {...this.props} {...this.state} refresh={this._refresh} />
-    }
+        });
+        getNotifications();
+    };
 }
 
 export default Container;
