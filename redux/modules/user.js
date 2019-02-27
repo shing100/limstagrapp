@@ -134,6 +134,47 @@ const getOwnProfile = () => {
     };
 }
 
+const followUser = (userId) => {
+    return (dispatch, getState) => {
+        const { user: { token } } = getState();
+        return fetch(`${API_URL}/users/${userId}/follow/`, {
+            method: "POST",
+            headers: {
+                Authorization: `JWT ${token}`
+            }
+        }).then(response => {
+            if (response.status === 401) {
+                dispatch(logOut());
+            } else if (response.ok) {
+                return true;
+            } else if (!response.ok) {
+                return false;
+            }
+        });
+    };
+}
+
+const unfollowUser = (userId) => {
+    return (dispatch, getState) => {
+        const { user: { token } } = getState();
+        return fetch(`${API_URL}/users/${userId}/unfollow/`, {
+            method: "POST",
+            headers: {
+                Authorization: `JWT ${token}`
+            }
+        }).then(response => {
+            if (response.status === 401) {
+                dispatch(logOut());
+            } else if (response.ok) {
+                return true;
+            } else if (!response.ok) {
+                return false;
+            }
+        });
+    };
+}
+
+
 // intiial state
 const initalState = {
     isLoggedIn: false
@@ -197,7 +238,9 @@ const actionCreators = {
     facebookLogin,
     setLogout,
     getNotifications,
-    getOwnProfile
+    getOwnProfile,
+    followUser,
+    unfollowUser
 }
 
 export { actionCreators };

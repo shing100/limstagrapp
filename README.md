@@ -46,3 +46,7 @@
 
 ### faceboook
 - https://docs.expo.io/versions/v31.0.0/sdk/facebook
+
+### fade-in-image
+- react-native-fade-in-image
+- react-navigation
