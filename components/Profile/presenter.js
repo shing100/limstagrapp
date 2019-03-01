@@ -28,10 +28,10 @@ const Profile = props => (
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white"
-  }
+    container: {
+        flex: 1,
+        backgroundColor: "white"
+    }
 });
 
 Profile.propTypes = {
