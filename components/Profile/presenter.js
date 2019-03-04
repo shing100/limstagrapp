@@ -39,10 +39,10 @@ const Profile = props => (
                         ? {
                             uri: props.profileObject.profile_image
                             }
-                        : require("../../assets/images/noPhoto.jpg")
+                        : require("../../assets/images/noPhoto.png")
                     }
                     style={styles.avatar}
-                    defaultSource={require("../../assets/images/noPhoto.jpg")}
+                    defaultSource={require("../../assets/images/noPhoto.png")}
                 />
             </TouchableOpacity>
             <View style={styles.headerColumn}>

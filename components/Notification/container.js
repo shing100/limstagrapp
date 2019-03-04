@@ -6,7 +6,7 @@ class Container extends Component {
     constructor(props) {
         super(props);
         this.state = {
-        isFollowing: props.creator.following
+            isFollowing: props.creator.following
         };
     }
 

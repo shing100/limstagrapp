@@ -28,10 +28,10 @@ const Notification = props => (
                         ? {
                             uri: props.creator.profile_image
                             }
-                        : require("../../assets/images/noPhoto.jpg")
+                        : require("../../assets/images/noPhoto.png")
                     }
                     style={styles.avatar}
-                    defaultSource={require("../../assets/images/noPhoto.jpg")}
+                    defaultSource={require("../../assets/images/noPhoto.png")}
                 />
             </FadeIn>
         </TouchableOpacity>
@@ -56,7 +56,7 @@ const Notification = props => (
         <Image
             source={{ uri: props.image.file }}
             style={styles.payload}
-            defaultSource={require("../../assets/images/photoPlaceholder.png")}
+            defaultSource={require("../../assets/images/loading.png")}
         />
         )}
     </View>
