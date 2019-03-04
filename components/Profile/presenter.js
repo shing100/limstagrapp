@@ -11,7 +11,6 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import FadeIn from "react-native-fade-in-image";
 import ProfileNumber from "../ProfileNumber";
 import SquarePhoto from "../SquarePhoto";
 import Photo from "../Photo";
