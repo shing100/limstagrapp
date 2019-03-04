@@ -1,4 +1,4 @@
-import { createStackNavigator } from "react-navigation";
+import { createAppContainer, createStackNavigator } from "react-navigation";
 import TakePhotoScreen from "../screens/TakePhotoScreen";
 import TabsNavigation from "./TabsNavigation";
 
@@ -22,4 +22,4 @@ const RootNavigation = createStackNavigator(
     }
 )
 
-export default RootNavigation;
+export default createAppContainer(RootNavigation);
