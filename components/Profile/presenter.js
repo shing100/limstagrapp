@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-    View,
-    Text,
-    ScrollView,
-    RefreshControl,
-    StyleSheet,
-    Dimensions,
-    Image,
-    TouchableOpacity
+  View,
+  Text,
+  ScrollView,
+  RefreshControl,
+  StyleSheet,
+  Dimensions,
+  Image,
+  TouchableOpacity
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import FadeIn from "react-native-fade-in-image";
@@ -19,17 +19,17 @@ import Photo from "../Photo";
 const width = Dimensions.get("window").width;
 
 const Profile = props => (
-        <View style={styles.container}>
-            <ScrollView
-                refreshControl={
-                    <RefreshControl
-                    refreshing={props.isFetching}
-                    onRefresh={props.getProfile}
-                    tintColor={"black"}
-                    titleColor={"black"}
-                    />
-                }
-            >
+    <View style={styles.container}>
+        <ScrollView
+        refreshControl={
+            <RefreshControl
+                refreshing={props.isFetching}
+                onRefresh={props.getProfile}
+                tintColor={"black"}
+                titleColor={"black"}
+            />
+        }
+        >
         <View style={styles.profile}>
             <View style={styles.header}>
             <TouchableOpacity onPressOut={props.showAS}>
@@ -60,25 +60,25 @@ const Profile = props => (
                     text={"following"}
                 />
                 </View>
-                    {props.profileObject.is_self ? (
-                <TouchableOpacity>
-                    <View
-                    style={[
-                        styles.button,
-                        { backgroundColor: "white" },
-                        { borderColor: "black" },
-                        { borderWidth: StyleSheet.hairlineWidth }
-                    ]}
-                    >
-                    <Text style={[styles.text, { color: "black" }]}>
-                        Edit profile
-                    </Text>
-                    </View>
-                </TouchableOpacity>
+                {props.profileObject.is_self ? (
+                    <TouchableOpacity>
+                        <View
+                        style={[
+                            styles.button,
+                            { backgroundColor: "white" },
+                            { borderColor: "black" },
+                            { borderWidth: StyleSheet.hairlineWidth }
+                        ]}
+                        >
+                        <Text style={[styles.text, { color: "black" }]}>
+                            Edit profile
+                        </Text>
+                        </View>
+                    </TouchableOpacity>
                 ) : (
                     <TouchableOpacity>
                         <View style={[styles.button, { backgroundColor: "#3e99ee" }]}>
-                        <Text style={[styles.text, { color: "black" }]}>
+                        <Text style={[styles.text, { color: "white" }]}>
                             {props.profileObject.following ? "Unfollow" : "Follow"}
                         </Text>
                         </View>
@@ -96,11 +96,11 @@ const Profile = props => (
             <View style={styles.modeBar}>
             <TouchableOpacity onPressOut={props.changeToGrid}>
                 <View style={styles.modeIcon}>
-                    <Ionicons
-                        name={"ios-grid-outline"}
-                        size={30}
-                        color={props.mode === "grid" ? "#3e99ee" : "black"}
-                    />
+                <Ionicons
+                    name={"ios-grid-outline"}
+                    size={30}
+                    color={props.mode === "grid" ? "#3e99ee" : "black"}
+                />
                 </View>
             </TouchableOpacity>
             <TouchableOpacity onPressOut={props.changeToList}>
@@ -113,22 +113,21 @@ const Profile = props => (
                 </View>
             </TouchableOpacity>
             </View>
-            
+
             {props.mode === "grid" && (
-                <View style={styles.photoContainer}>
-                    {props.profileObject.images &&
-                    props.profileObject.images.map(photo => (
-                        <SquarePhoto key={photo.id} imageURL={photo.file} />
-                    ))}
-                </View>
+            <View style={styles.photoContainer}>
+                {props.profileObject.images &&
+                props.profileObject.images.map(photo => (
+                    <SquarePhoto key={photo.id} imageURL={photo.file} />
+                ))}
+            </View>
             )}
 
             {props.mode === "list" &&
-                props.profileObject.images &&
-                props.profileObject.images.map(photo => (
-                    <Photo {...photo} key={photo.id} />
-                ))}
-
+            props.profileObject.images &&
+            props.profileObject.images.map(photo => (
+                <Photo {...photo} key={photo.id} />
+            ))}
         </View>
         </ScrollView>
     </View>
@@ -184,10 +183,6 @@ const styles = StyleSheet.create({
         width: width / 2,
         alignItems: "center"
     },
-    photoContainer: {
-        flexDirection: "row",
-        flexWrap: "wrap"
-    },
     button: {
         borderRadius: 3,
         paddingTop: 7,
@@ -198,6 +193,10 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: "600",
         textAlign: "center"
+    },
+    photoContainer: {
+        flexDirection: "row",
+        flexWrap: "wrap"
     }
 });
 
@@ -245,7 +244,7 @@ Profile.propTypes = {
     changeToList: PropTypes.func.isRequired,
     changeToGrid: PropTypes.func.isRequired,
     mode: PropTypes.oneOf(["grid", "list"]).isRequired,
-    showAS: PRopTypes.func.isRequired
+    showAS: PropTypes.func.isRequired
 };
 
 export default Profile;

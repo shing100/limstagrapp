@@ -36,55 +36,51 @@ class Container extends Component {
             });
         }
     };
-
+    
     render() {
-        const { isFetching } = this.state;
-        console.log(this.props);
         return (
-            <View style={{ flex: 1 }}>
-                <Profile
-                    {...this.props}
-                    {...this.state}
-                    changeToList={this._changeToList}
-                    changeToGrid={this._changeToGrid}
-                    showAS={this._showActionSheet}
-                />
-                <ActionSheet
-                    ref={actionSheet => (this.actionSheet = actionSheet)}
-                    options={options}
-                    cancelButtonIndex={CANCEL_INDEX}
-                    destructiveButtonIndex={DESTRUCTIVE_INDEX}
-                    onPress={this._handleSheetPress}
-                />
-            </View>
-        )
+        <View style={{ flex: 1 }}>
+            <Profile
+                {...this.props}
+                {...this.state}
+                changeToList={this._changeToList}
+                changeToGrid={this._changeToGrid}
+                showAS={this._showActionSheet}
+            />
+            <ActionSheet
+                ref={actionSheet => (this.actionSheet = actionSheet)}
+                options={options}
+                cancelButtonIndex={CANCEL_INDEX}
+                destructiveButtonIndex={DESTRUCTIVE_INDEX}
+                onPress={this._handleSheetPress}
+            />
+        </View>
+        );
     }
 
     _changeToList = () => {
         this.setState({
-            mode: "list"
-        });
-    };
-    
-    _changeToGrid = () => {
-        this.setState({
-            mode: "grid"
+        mode: "list"
         });
     };
 
+    _changeToGrid = () => {
+        this.setState({ mode: "grid" });
+    };
+
     _showActionSheet = () => {
-    const { profileObject: { is_self } } = this.props;
+        const { profileObject: { is_self } } = this.props;
         if (is_self) {
             this.actionSheet.show();
         }
     };
-    
+
     _handleSheetPress = index => {
         const { logOut } = this.props;
         if (index === 1) {
             logOut();
         }
-    };
+  };
 }
 
 export default Container;
