@@ -32,7 +32,7 @@ const Profile = props => (
             >
         <View style={styles.profile}>
             <View style={styles.header}>
-            <TouchableOpacity>
+            <TouchableOpacity onPressOut={props.showAS}>
                 <Image
                     source={
                         props.profileObject.profile_image
@@ -208,8 +208,8 @@ Profile.propTypes = {
         bio: PropTypes.string,
         followers_count: PropTypes.number,
         following_count: PropTypes.number,
-        following: PropTypes.bool.isRequired,
-        is_self: PropTypes.bool.isRequired,
+        following: PropTypes.bool,
+        is_self: PropTypes.bool,
         images: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -244,7 +244,8 @@ Profile.propTypes = {
     }),
     changeToList: PropTypes.func.isRequired,
     changeToGrid: PropTypes.func.isRequired,
-    mode: PropTypes.oneOf(["grid", "list"]).isRequired
+    mode: PropTypes.oneOf(["grid", "list"]).isRequired,
+    showAS: PRopTypes.func.isRequired
 };
 
 export default Profile;
