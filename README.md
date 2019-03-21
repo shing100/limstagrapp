@@ -50,3 +50,14 @@
 ### fade-in-image
 - react-native-fade-in-image
 - react-navigation
+
+
+### AWS
+
+- pip install awsebcli
+- eb
+
+- eb init
+- aws-access-id 
+- aws.amazon.com 에서 your Security Credentials 에서 키 생성
+- 플렛폼 선택
