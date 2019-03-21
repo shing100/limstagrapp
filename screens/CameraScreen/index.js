@@ -86,9 +86,24 @@ class CameraScreen extends Component {
                         </Camera>
                     )}
                     <View style={styles.btnContainer}>
-                        <TouchableOpacity onPressOut={this._takePhoto}>
-                        <View style={styles.btn} />
-                        </TouchableOpacity>
+                        {pictureTaken ? (
+                            <View style={styles.photoActions}>
+                                <TouchableOpacity onPressOut={this._rejectPhoto}>
+                                    <MaterialIcons name={"cancel"} size={60} color="black" />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPressOut={this._approvePhoto}>
+                                    <MaterialIcons
+                                        name={"check-circle"}
+                                        size={60}
+                                        color="black"
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                        ) : (
+                            <TouchableOpacity onPressOut={this._takePhoto}>
+                                <View style={styles.btn} />
+                            </TouchableOpacity>
+                        )}
                     </View>
                 </View>
             );
@@ -139,35 +154,43 @@ class CameraScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white"
-  },
-  camera: {
-    flex: 2,
-    alignItems: "flex-end",
-    justifyContent: "space-between",
-    flexDirection: "row"
-  },
-  btnContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  btn: {
-    width: 100,
-    height: 100,
-    backgroundColor: "white",
-    borderColor: "#bbb",
-    borderWidth: 15,
-    borderRadius: 50
-  },
-  action: {
-    backgroundColor: "transparent",
-    height: 40,
-    width: 40,
-    margin: 10
-  }
+    container: {
+        flex: 1,
+        backgroundColor: "white"
+    },
+    camera: {
+        flex: 2,
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+        flexDirection: "row"
+    },
+    btnContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    btn: {
+        width: 100,
+        height: 100,
+        backgroundColor: "white",
+        borderColor: "#bbb",
+        borderWidth: 15,
+        borderRadius: 50
+    },
+    action: {
+        backgroundColor: "transparent",
+        height: 40,
+        width: 40,
+        margin: 10
+    },
+    photoActions: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        flex: 1,
+        alignItems: "center",
+        width: 250
+    }
+  
 });
 
 export default CameraScreen;
