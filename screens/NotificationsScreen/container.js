@@ -1,5 +1,3 @@
-
-    
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import NotificationsScreen from "./presenter";
@@ -9,9 +7,15 @@ class Container extends Component {
     notifications: PropTypes.array,
     getNotifications: PropTypes.func.isRequired
   };
+
   state = {
     isFetching: false
   };
+
+  static defaultProps = {
+    notifications: []
+  };
+
   componentWillReceiveProps = nextProps => {
     if (nextProps.feed) {
       this.setState({

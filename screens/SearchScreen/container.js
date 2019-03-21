@@ -22,6 +22,10 @@ class Container extends Component {
         isFetching: false
     };
 
+    static defaultProps = {
+        search: []
+    };
+
     componentDidMount() {
         const { navigation } = this.props;
         navigation.setParams({
