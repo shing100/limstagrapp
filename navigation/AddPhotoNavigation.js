@@ -1,8 +1,8 @@
-import { TabNavigator } from "react-navigation";
+import { createAppContainer, createStackNavigator } from "react-navigation";
 import CameraScreen from "../screens/CameraScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 
-const AddPhotoNavigation = TabNavigator(
+const AddPhotoNavigation = createStackNavigator(
     {
         Camera: {
             screen: CameraScreen,
@@ -39,4 +39,4 @@ const AddPhotoNavigation = TabNavigator(
     }
 );
 
-export default AddPhotoNavigation;
+export default createAppContainer(AddPhotoNavigation);
