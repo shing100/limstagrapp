@@ -115,25 +115,6 @@ const getNotifications = () => {
     };
 }
 
-const getOwnProfile = () => {
-    return (dispatch, getState) => {
-        const { user: { token, profile : { username } } } = getState();
-    fetch(`${API_URL}/users/${username}/`, {
-        headers: {
-            Authorization: `JWT ${token}`
-        }
-    })
-    .then(response => {
-        if (response.status === 401) {
-          dispatch(userActions.logOut());
-        } else {
-          return response.json();
-        }
-    })
-    .then(json => dispatch(setUser(json)));
-    };
-}
-
 const followUser = (userId) => {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
@@ -174,19 +155,38 @@ const unfollowUser = (userId) => {
     };
 }
 
+const getOwnProfile = () => {
+    return (dispatch, getState) => {
+        const { user: { token, profile : { username } } } = getState();
+        fetch(`${API_URL}/users/${username}/`, {
+            headers: {
+                Authorization: `JWT ${token}`
+            }
+        })
+        .then(response => {
+            if (response.status === 401) {
+                dispatch(setLogout());
+            } else {
+                return response.json();
+            }
+        })
+        .then(json => dispatch(setUser(json)));
+    };
+}
+
 const getProfile = (username) => {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
         return fetch(`${API_URL}/users/${username}/`, {
-        headers: {
-            Authorization: `JWT ${token}`
-        }
+            headers: {
+                Authorization: `JWT ${token}`
+            }
         })
         .then(response => {
             if (response.status === 401) {
-            dispatch(logOut());
+                dispatch(setLogout());
             } else {
-            return response.json();
+                return response.json();
             }
         })
         .then(json => json);

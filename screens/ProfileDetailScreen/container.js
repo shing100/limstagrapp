@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Profile from "../../components/Profile";
 
 class Container extends Component {

@@ -1,4 +1,4 @@
-import { createAppContainer, createStackNavigator } from "react-navigation";
+import { createAppContainer ,createStackNavigator } from "react-navigation";
 import TakePhotoScreen from "../screens/TakePhotoScreen";
 import TabsNavigation from "./TabsNavigation";
 
